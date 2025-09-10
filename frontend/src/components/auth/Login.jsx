@@ -132,6 +132,14 @@ const Login = () => {
               </span>
             </div>
           </form>
+          <div className="text-center">
+            <h3 className="text-lg font-bold mb-2">Login Credentials</h3>
+            <p className="text-center text-sm text-gray-600">
+              Admin Login: admin@gmail.com / 123456
+              <br />
+              Patient Login: test@gmail.com / 123456
+            </p>
+          </div>
         </div>
       </div>
     </div>

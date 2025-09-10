@@ -132,7 +132,7 @@ The frontend will run on `http://localhost:5173`
    - Fill in details including Patient ID
    - Select "Patient" role
 
-2. **Upload Assessment:**
+2. **Upload Your Teeth Photo:**
    - Login to your account
    - Click "Upload New Submission"
    - Fill patient details and upload teeth photo
