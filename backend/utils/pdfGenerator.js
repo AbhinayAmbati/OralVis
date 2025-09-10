@@ -203,7 +203,7 @@ const generatePDF = async (submission) => {
         yPosition += 40;
         
         // Screening Report Section - properly sized box
-        const boxHeight = 320;
+        const boxHeight = 250;
         doc.rect(leftMargin, yPosition, contentWidth, boxHeight)
            .stroke('#E0E0E0')
            .fillAndStroke('#F5F5F5', '#E0E0E0');
@@ -243,7 +243,7 @@ const generatePDF = async (submission) => {
               doc.fontSize(10).font('Helvetica-Bold').fillColor('white');
               const labelHeight = 20;
               doc.rect(imageStartX, yPosition + imageHeight, imageWidth, labelHeight).fill('#E74C3C');
-              doc.text('Upper Teeth', imageStartX, yPosition + imageHeight + 5, {
+              doc.text('Original Image', imageStartX, yPosition + imageHeight + 5, {
                 width: imageWidth,
                 align: 'center'
               });

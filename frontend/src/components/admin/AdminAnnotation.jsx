@@ -12,10 +12,10 @@ const AdminAnnotation = () => {
   const [error, setError] = useState('');
   const [adminNotes, setAdminNotes] = useState('');
   
-  // Annotation state
+  // Annotation state - Increased default stroke width from 2 to 5
   const [currentTool, setCurrentTool] = useState('rectangle');
   const [currentColor, setCurrentColor] = useState('#ff0000');
-  const [strokeWidth, setStrokeWidth] = useState(2);
+  const [strokeWidth, setStrokeWidth] = useState(5); // Increased from 2 to 5
   const [annotations, setAnnotations] = useState([]);
   const [isDrawing, setIsDrawing] = useState(false);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
@@ -78,7 +78,8 @@ const AdminAnnotation = () => {
   const drawAnnotations = (ctx) => {
     annotations.forEach(annotation => {
       ctx.strokeStyle = annotation.color || currentColor;
-      ctx.lineWidth = annotation.strokeWidth || strokeWidth;
+      // Use the annotation's strokeWidth or default to current strokeWidth, with minimum of 3
+      ctx.lineWidth = Math.max(annotation.strokeWidth || strokeWidth, 3);
       ctx.fillStyle = annotation.fillColor || 'transparent';
       
       switch (annotation.type) {
@@ -118,7 +119,7 @@ const AdminAnnotation = () => {
           break;
           
         case 'text':
-          ctx.font = `${annotation.fontSize || 16}px Arial`;
+          ctx.font = `${annotation.fontSize || 18}px Arial`; // Increased font size from 16 to 18
           ctx.fillStyle = annotation.color || currentColor;
           ctx.fillText(annotation.text, annotation.x, annotation.y);
           break;
@@ -127,7 +128,8 @@ const AdminAnnotation = () => {
   };
 
   const drawArrow = (ctx, startX, startY, endX, endY) => {
-    const headLength = 10;
+    // Increased arrowhead length based on stroke width
+    const headLength = Math.max(15, ctx.lineWidth * 2);
     const angle = Math.atan2(endY - startY, endX - startX);
     
     ctx.beginPath();
@@ -185,7 +187,7 @@ const AdminAnnotation = () => {
       ctx.drawImage(img, 0, 0);
       drawAnnotations(ctx);
       
-      // Draw current annotation
+      // Draw current annotation with increased stroke width
       ctx.strokeStyle = currentColor;
       ctx.lineWidth = strokeWidth;
       
@@ -402,19 +404,23 @@ const AdminAnnotation = () => {
                 </div>
               </div>
 
-              {/* Stroke Width */}
+              {/* Stroke Width - Increased range from 1-10 to 3-20 */}
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Stroke Width: {strokeWidth}px
                 </label>
                 <input
                   type="range"
-                  min="1"
-                  max="10"
+                  min="3"
+                  max="20"
                   value={strokeWidth}
                   onChange={(e) => setStrokeWidth(parseInt(e.target.value))}
                   className="w-full"
                 />
+                <div className="flex justify-between text-xs text-gray-500 mt-1">
+                  <span>3px</span>
+                  <span>20px</span>
+                </div>
               </div>
 
               {/* History Controls */}
