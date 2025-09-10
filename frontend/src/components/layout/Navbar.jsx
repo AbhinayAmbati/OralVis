@@ -21,7 +21,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to={isAdmin() ? '/admin' : '/'} className="flex items-center">
               <div className="text-white text-xl font-bold">
-                OralVis Assessment
+                OralVis
               </div>
             </Link>
           </div>
