@@ -2,6 +2,8 @@
 
 A comprehensive MERN stack application for oral health assessment with patient uploads, admin annotations, and automated PDF report generation.
 
+### Images and PDFs are stored in AWS S3 bucket.
+
 ## Features
 
 ### Authentication & Roles
@@ -37,6 +39,7 @@ A comprehensive MERN stack application for oral health assessment with patient u
 - Multer for file uploads
 - PDFKit for report generation
 - Canvas for image processing
+- AWS S3 for image and PDF storage
 
 ### Frontend
 - React 18 with Vite
@@ -77,7 +80,6 @@ JWT_SECRET=your_secure_jwt_secret_key
 JWT_EXPIRE=7d
 PORT=5000
 
-# AWS S3 Configuration (Optional)
 AWS_ACCESS_KEY_ID=your_aws_access_key
 AWS_SECRET_ACCESS_KEY=your_aws_secret_key
 AWS_REGION=us-east-1
