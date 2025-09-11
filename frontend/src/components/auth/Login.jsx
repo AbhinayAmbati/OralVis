@@ -12,7 +12,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const { login, isAdmin } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -27,22 +27,23 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
-
+  
     const result = await login(formData);
-    
+  
     if (result.success) {
-      // Navigate based on user role
-      if (isAdmin()) {
-        navigate('/admin');
+      const savedUser = JSON.parse(localStorage.getItem('user'));
+      if (savedUser?.role === 'admin') {
+        navigate('/admin', { replace: true });
       } else {
-        navigate('/');
+        navigate('/', { replace: true });
       }
     } else {
       setError(result.error);
     }
-    
+  
     setLoading(false);
   };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 to-blue-600 py-12 px-4 sm:px-6 lg:px-8">
